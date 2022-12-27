@@ -5,7 +5,9 @@ const formRefs = document.querySelector('.feedback-form');
 formRefs.addEventListener('input', throttle(setCurrentData, 500));
 formRefs.addEventListener('submit', onFormSubmit);
 
-if (Object.values(localStorage.getItem(STORAGE_KEY)).length) {
+const data = localStorage.getItem(STORAGE_KEY) || {};
+
+if (Object.values(data).length) {
   const localData = getDataFromLocal();
   for (const [name, value] of Object.entries(localData)) {
     if (value) {
